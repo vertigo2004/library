@@ -1,8 +1,8 @@
 # Getting Started
 
 ### Create new MySQL user
-CREATE USER 'library'@'localhost' IDENTIFIED BY 'library';
-GRANT ALL PRIVILEGES ON * . * TO 'library'@'localhost';
+CREATE USER 'library'@'%' IDENTIFIED BY 'library';
+GRANT ALL PRIVILEGES ON * . * TO 'library'@'%';
 FLUSH PRIVILEGES;
 
 ### Connection String
