@@ -2,7 +2,7 @@ package com.itcluster.advanced.library.controller;
 
 import com.itcluster.advanced.library.model.Book;
 import com.itcluster.advanced.library.repository.BookRepository;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("book")
-@Slf4j
 public class BookController {
 
     BookRepository bookRepository;
@@ -26,9 +25,7 @@ public class BookController {
 
     @GetMapping("{id}")
     public Book getOne(@PathVariable Long id) {
-        Book b = bookRepository.getOne(id);
-        log.info("Book: {}", b);
-        return b;
+        return bookRepository.findById(id).orElse(null);
     }
 
     @GetMapping("all")
@@ -43,8 +40,10 @@ public class BookController {
 
     @DeleteMapping("{id}")
     public Book delete(@PathVariable Long id) {
-        Book toDelete = bookRepository.getOne(id);
-        bookRepository.delete(toDelete);
+        Book toDelete = bookRepository.findById(id).orElse(null);
+        if (toDelete != null) {
+            bookRepository.delete(toDelete);
+        }
         return toDelete;
     }
 
