@@ -12,8 +12,8 @@ CREATE TABLE author
 (
   id INT AUTO_INCREMENT,
   first_name VARCHAR(50) NOT NULL,
-  middle_name VARCHAR(50) NOT NULL,
-  last_name VARCHAR(50),
+  middle_name VARCHAR(50),
+  last_name VARCHAR(50) NOT NULL,
   dob DATE,
   PRIMARY KEY (id)
 

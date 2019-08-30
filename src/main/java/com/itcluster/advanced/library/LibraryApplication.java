@@ -14,7 +14,6 @@ public class LibraryApplication {
         SpringApplication.run(LibraryApplication.class, args);
     }
 
-
     @Bean
     public CommandLineRunner demo(BookRepository repository) {
         return (args) -> {
