@@ -39,9 +39,10 @@ CREATE TABLE book
   name VARCHAR(256) NOT NULL,
   annotation TEXT,
   published VARCHAR(4),
-  publicity INT,
+  publicity_id INT,
   pages INT,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (publicity_id) REFERENCES publicity (id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=INNODB CHARACTER SET=utf8;
 
 CREATE TABLE book_author

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Data
 @NoArgsConstructor
@@ -19,7 +21,11 @@ public class Book {
     private String author;
     private String title;
     private String annotation;
-    private String publicity;
+
+    @ManyToOne
+    @JoinColumn(name="publicity_id", nullable=false)
+    private Publicity publicity;
+
     private String published;
     private String genre;
     private Integer pages;
