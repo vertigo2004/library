@@ -8,7 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -27,6 +29,9 @@ public class Book {
     private Publicity publicity;
 
     private String published;
-    private String genre;
+
+    @ManyToMany
+    private Set<Genre> genre;
+
     private Integer pages;
 }
