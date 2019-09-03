@@ -36,7 +36,7 @@ CREATE TABLE publicity
 CREATE TABLE book
 (
   id INT AUTO_INCREMENT,
-  name VARCHAR(256) NOT NULL,
+  title VARCHAR(256) NOT NULL,
   annotation TEXT,
   published VARCHAR(4),
   publicity_id INT,
@@ -61,13 +61,12 @@ CREATE TABLE book_genre
   FOREIGN KEY (genre_id) REFERENCES genre (id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=INNODB;
 
-CREATE TABLE journal
+CREATE TABLE logbook
 (
   book_id INTEGER NOT NULL,
   user_id INTEGER NOT NULL,
-  took_date DATE NOT NULL,
-  return_estimate DATE NOT NULL,
-  return_date DATE,
+  handout DATE NOT NULL,
+  returned DATE,
   FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE RESTRICT ON UPDATE CASCADE,
   FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=INNODB;
