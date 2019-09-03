@@ -14,7 +14,7 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
-    private String first_name;
-    private String last_name;
+    private String firstname;
+    private String lastname;
     private Date dob;
 }

@@ -1,12 +1,10 @@
 package com.itcluster.advanced.library.controller;
 
 import com.itcluster.advanced.library.model.Book;
-import com.itcluster.advanced.library.model.Publicity;
-import com.itcluster.advanced.library.repository.BookRepository;
 
-import com.itcluster.advanced.library.repository.PublicityRepository;
+import com.itcluster.advanced.library.service.BookService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,62 +14,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("book")
 @Slf4j
 public class BookController {
 
-    BookRepository bookRepository;
-    PublicityRepository pubRepository;
-
-    public BookController(BookRepository bookRepository,
-                          PublicityRepository pubRepository) {
-        this.bookRepository = bookRepository;
-        this.pubRepository = pubRepository;
-    }
+    @Autowired
+    BookService bookService;
 
     @GetMapping("{id}")
     public Book getOne(@PathVariable Long id) {
-        return bookRepository.findById(id).orElse(null);
+        return bookService.getOne(id);
     }
 
     @GetMapping("all")
     public List<Book> findAll() {
-        return bookRepository.findAll();
+        return bookService.findAll();
     }
 
     @PostMapping(produces = "application/json")
     public Book save(@RequestBody Book book) {
-        String name = book.getPublicity().getName();
-        if (!StringUtils.isEmpty(name)) {
-            Publicity pub = pubRepository.getByName(name);
-            if (pub != null) {
-                book.setPublicity(pub);
-            } else {
-                book.setPublicity(pubRepository.save(book.getPublicity()));
-            }
-        }
-
-        return bookRepository.save(book);
+        return bookService.create(book);
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable Long id) {
-        Optional<Book> toDelete = bookRepository.findById(id);
-        if (toDelete.isPresent()) {
-            bookRepository.delete(toDelete.get());
-        }
+        bookService.delete(id);
     }
 
     @GetMapping("author/{author}")
     public List<Book> byAuthor(@PathVariable String author) {
-        return bookRepository.findByAuthorLike("%" + author + "%");
+        return bookService.getByAuthor(author);
     }
 
     @GetMapping("pub/{name}")
     public List<Book> byPublicity(@PathVariable String name) {
-        return bookRepository.findByPublicityName(name);
+        return bookService.getByPublicity(name);
     }
 }

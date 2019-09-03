@@ -2,8 +2,8 @@
 CREATE TABLE user
 (
   id INT AUTO_INCREMENT,
-  first_name VARCHAR(50) NOT NULL,
-  last_name VARCHAR(50) NOT NULL,
+  firstname VARCHAR(50) NOT NULL,
+  lastname VARCHAR(50) NOT NULL,
   dob DATE,
   PRIMARY KEY (id)
 ) ENGINE=INNODB CHARACTER SET=utf8;
@@ -11,9 +11,9 @@ CREATE TABLE user
 CREATE TABLE author
 (
   id INT AUTO_INCREMENT,
-  first_name VARCHAR(50) NOT NULL,
-  middle_name VARCHAR(50),
-  last_name VARCHAR(50) NOT NULL,
+  firstname VARCHAR(50) NOT NULL,
+  middlename VARCHAR(50),
+  lastname VARCHAR(50) NOT NULL,
   dob DATE,
   PRIMARY KEY (id)
 

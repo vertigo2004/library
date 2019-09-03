@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Long> {
-    List<Author> findByLastnameOrderByFirstnameMiddlename(String name);
+    List<Author> findByLastnameLikeOrderByFirstnameAscMiddlenameAsc(String name);
+    Author findByFirstnameAndLastname(String firsnname, String lastname);
 }

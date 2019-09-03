@@ -1,4 +1,4 @@
-INSERT INTO user (id, first_name, last_name, dob) VALUES
+INSERT INTO user (id, firstname, lastname, dob) VALUES
 (1, 'Олег', 'Пашкевич', '1972-10-22'),
 (2, 'Мар''ян', 'Лукаш', null ),
 (3, 'Світлана', 'Федорчук', null);
@@ -13,9 +13,9 @@ INSERT INTO publicity (id, name) VALUES
 (2, 'Видавництво Старого Лева'),
 (3, 'Oracle Press'),
 (4, 'А-БА-БА-ГА-ЛА-МА-ГА'),
-(5, 'Oracle Press');
+(5, 'КСД');
 
-INSERT INTO author (id, first_name, middle_name, last_name, dob) VALUES
+INSERT INTO author (id, firstname, middlename, lastname, dob) VALUES
 (1, 'Джо', null, 'Харт', null),
 (2, 'Скарлет', null, 'Кертіс', null),
 (3, 'Сара', null, 'Паппворт', null),
