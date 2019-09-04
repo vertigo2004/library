@@ -2,6 +2,7 @@ package com.itcluster.advanced.library.model;
 
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,9 +18,9 @@ public class Logbook {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private User user;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Book book;
     @Column(columnDefinition = "DATE")
     private Date handout;

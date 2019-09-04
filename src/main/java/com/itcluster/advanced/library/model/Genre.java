@@ -5,7 +5,6 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Data
@@ -13,7 +12,7 @@ import javax.persistence.Id;
 @JsonIgnoreProperties(value = { "handler", "hibernateLazyInitializer" })
 public class Genre {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
     private String name;
 }

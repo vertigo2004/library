@@ -1,3 +1,7 @@
+drop database library;
+create database library character set utf8;
+
+use library;
 
 CREATE TABLE user
 (
@@ -69,4 +73,9 @@ CREATE TABLE logbook
   returned DATE,
   FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE RESTRICT ON UPDATE CASCADE,
   FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=INNODB;
+
+CREATE TABLE hibernate_sequence
+(
+  next_val INT
 ) ENGINE=INNODB;

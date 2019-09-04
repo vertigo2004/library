@@ -1,3 +1,5 @@
+use library;
+
 INSERT INTO user (id, firstname, lastname, dob) VALUES
 (1, 'Олег', 'Пашкевич', '1972-10-22'),
 (2, 'Мар''ян', 'Лукаш', null ),
@@ -73,3 +75,5 @@ INSERT INTO book_genre (book_id, genre_id) VALUES
 (11, 14),
 (12, 14),
 (13, 14);
+
+INSERT INTO hibernate_sequence (next_val) VALUE (100);

@@ -37,21 +37,6 @@ public class BookService {
     }
 
     public Book create(Book book) {
-        Set<Author> authors = book.getAuthor();
-//        book.setAuthor(resolveAuthors(authors));
-//        book.setGenre(resolveGenre(book.getGenre()));
-
-
-        String name = book.getPublicity().getName();
-        if (!StringUtils.isEmpty(name)) {
-            Publicity pub = pubRepository.getByName(name);
-            if (pub != null) {
-                book.setPublicity(pub);
-            } else {
-                book.setPublicity(pubRepository.save(book.getPublicity()));
-            }
-        }
-
         return bookRepository.save(book);
     }
 
