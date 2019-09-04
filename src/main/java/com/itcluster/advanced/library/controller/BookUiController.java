@@ -36,4 +36,10 @@ public class BookUiController {
         model.addAttribute("book", bookService.getOne(id));
         return "onebook";
     }
+
+    @GetMapping("/book-list")
+    public String getBookList(Model model) {
+        model.addAttribute("books", bookService.findAll());
+        return "books";
+    }
 }
