@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("book")
+@RequestMapping("/v1/book")
 @Slf4j
 public class BookController {
 
