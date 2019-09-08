@@ -22,6 +22,11 @@ public class BookUiController {
         return "homepage";
     }
 
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) {
+        return "dashboard";
+    }
+
     @GetMapping("/random-book")
     public String randomBook(Model model) {
         List<Book> books = bookService.findAll();

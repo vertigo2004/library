@@ -1,9 +1,9 @@
 use library;
 
-INSERT INTO user (id, firstname, lastname, dob) VALUES
-(1, 'Олег', 'Пашкевич', '1972-10-22'),
-(2, 'Мар''ян', 'Лукаш', null ),
-(3, 'Світлана', 'Федорчук', null);
+INSERT INTO user (id, email, password, firstname, lastname, dob) VALUES
+(1, 'vertigo.if@gmail.com', '$2a$10$.xysUEZxutiwXaduiJJ8oeWpXU9FbU5W7ow9.0KdjBepM0w86ZAT.', 'Олег', 'Пашкевич', '1972-10-22'),
+(2, 'admin@mylib.com', '$2a$10$.xysUEZxutiwXaduiJJ8oeWpXU9FbU5W7ow9.0KdjBepM0w86ZAT.', 'Мар''ян', 'Лукаш', null ),
+(3, 'librarian@mylib.com', '$2a$10$.xysUEZxutiwXaduiJJ8oeWpXU9FbU5W7ow9.0KdjBepM0w86ZAT.', 'Світлана', 'Федорчук', null);
 
 INSERT INTO genre (id, name) VALUES
 (1, 'Біографія'), (2, 'Детектив'), (3, 'Історичний'), (4, 'Збірка'), (5, 'Пригоди'), (6, 'Психологія'),
@@ -75,5 +75,16 @@ INSERT INTO book_genre (book_id, genre_id) VALUES
 (11, 14),
 (12, 14),
 (13, 14);
+
+INSERT INTO role (id, name) VALUES
+(1, 'admin'),
+(2, 'librarian'),
+(3, 'user');
+
+INSERT INTO user_role (user_id, role_id) VALUES
+(1, 3),
+(2, 1),
+(3, 2),
+(3, 3);
 
 INSERT INTO hibernate_sequence (next_val) VALUE (100);

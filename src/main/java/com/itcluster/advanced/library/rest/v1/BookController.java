@@ -1,4 +1,4 @@
-package com.itcluster.advanced.library.controller;
+package com.itcluster.advanced.library.rest.v1;
 
 import com.itcluster.advanced.library.model.Book;
 
