@@ -18,16 +18,16 @@ public class BookUiController {
     BookService bookService;
 
     @GetMapping("/")
-    public String homePage(Model model) {
+    public String homePage() {
         return "homepage";
     }
 
-    @GetMapping("/dashboard")
-    public String dashboard(Model model) {
+    @GetMapping("dashboard")
+    public String dashboard() {
         return "dashboard";
     }
 
-    @GetMapping("/random-book")
+    @GetMapping("random-book")
     public String randomBook(Model model) {
         List<Book> books = bookService.findAll();
         Random r = new Random();
@@ -36,13 +36,13 @@ public class BookUiController {
         return "onebook";
     }
 
-    @GetMapping("/book/{id}")
+    @GetMapping("book/{id}")
     public String homePage(@PathVariable Long id, Model model) {
         model.addAttribute("book", bookService.getOne(id));
         return "onebook";
     }
 
-    @GetMapping("/book-list")
+    @GetMapping("book-list")
     public String getBookList(Model model) {
         model.addAttribute("books", bookService.findAll());
         return "books";

@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 import javax.sql.DataSource;
 
@@ -25,6 +26,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${spring.queries.roles-query}")
     private String rolesQuery;
+
+    @Bean
+    public SpringSecurityDialect securityDialect() {
+        return new SpringSecurityDialect();
+    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -63,12 +69,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .formLogin().loginPage("/login").permitAll()
-                .defaultSuccessUrl("/dashboard", false)
+                .defaultSuccessUrl("/dashboard", true)
                 .failureUrl("/login?error=True")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and()
-                .logout().permitAll().logoutSuccessUrl("/login?Logout")
+                .logout().permitAll().logoutSuccessUrl("/?Logout")
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied");
     }
