@@ -11,6 +11,7 @@ CREATE TABLE user
   firstname VARCHAR(50) NOT NULL,
   lastname VARCHAR(50) NOT NULL,
   dob DATE,
+  photo VARCHAR(255),
   PRIMARY KEY (id)
 ) ENGINE=INNODB CHARACTER SET=utf8;
 

@@ -23,6 +23,7 @@ public class User {
     private String firstname;
     private String lastname;
     private Date dob;
+    private String photo;
 
     @ManyToMany
     @JoinTable(name = "user_role",  inverseJoinColumns = @JoinColumn(name = "role_id"))

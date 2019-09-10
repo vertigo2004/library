@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
 </head>
 <body>
     <h1>Dashboard</h1>
+    <div th:text="${#authentication.name}">
+        The value of the "name" property of the authentication object should appear here.
+    </div>
+    Authenticated user roles:
+    <div sec:authentication="principal.authorities"></div>
+    <a th:href="@{/user/profile}">Profile</a>
 </body>
 </html>

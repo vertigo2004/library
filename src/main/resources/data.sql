@@ -77,9 +77,9 @@ INSERT INTO book_genre (book_id, genre_id) VALUES
 (13, 14);
 
 INSERT INTO role (id, name) VALUES
-(1, 'admin'),
-(2, 'librarian'),
-(3, 'user');
+(1, 'ADMIN'),
+(2, 'LIBRARIAN'),
+(3, 'USER');
 
 INSERT INTO user_role (user_id, role_id) VALUES
 (1, 3),
