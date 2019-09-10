@@ -2,9 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>My library dashboard</title>
+    <link rel="shortcut icon" type="image/png" href="/images/library-logo.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>
 </head>
 <body>
+<div th:replace="base-layout :: header"></div>
+<div class="container hero-unit">
     <h1>Dashboard</h1>
     <div th:text="${#authentication.name}">
         The value of the "name" property of the authentication object should appear here.
@@ -12,5 +19,6 @@
     Authenticated user roles:
     <div sec:authentication="principal.authorities"></div>
     <a th:href="@{/user/profile}">Profile</a>
+</div>
 </body>
 </html>

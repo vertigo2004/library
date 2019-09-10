@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <title>My library homepage</title>
     <link rel="shortcut icon" type="image/png" href="/images/library-logo.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>
 </head>
 <body>
-    <div id="header">
-        <h1>Ласкаво просимо до нашої бібліотеки</h1>
-    </div>
+<div th:replace="base-layout :: header"></div>
+<div class="container hero-unit">
+    <h1>Ласкаво просимо до нашої бібліотеки</h1>
+
     <div id="button">
         <p>Наразі тут немає що робити. Натисніть кнопку і отримайте випадкову книжку</p>
-        <input type="button" onclick="location.href='/random-book';" value="Випадкова книжка" />
-        <input type="button" onclick="location.href='/book-list';" value="Список книжок" />
+        <input type="button" onclick="location.href='/random-book';" value="Випадкова книжка"/>
+        <input type="button" onclick="location.href='/book-list';" value="Список книжок"/>
     </div>
-    <div sec:authorize="isAnonymous()"><a th:href="@{/login}">Sign in</a> | <a th:href="@{/registration}">Sign up</a></div>
-    <div sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Log out</a></div>
 
     <div sec:authorize="isAuthenticated()">
         This content is only shown to authenticated users.
@@ -34,5 +37,7 @@
     <div sec:authorize="hasAuthority('LIBRARIAN')">
         This content is only shown to librarian.
     </div>
+    <div th:replace="base-layout :: footer"></div>
+</div>
 </body>
 </html>
