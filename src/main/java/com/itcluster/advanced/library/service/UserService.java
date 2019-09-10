@@ -56,9 +56,6 @@ public class UserService {
         if (!StringUtils.isEmpty(user.getEmail())) {
             origin.setEmail(user.getEmail());
         }
-        if (!StringUtils.isEmpty(user.getPassword())) {
-            origin.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        }
         if (!StringUtils.isEmpty(user.getDob())) {
             origin.setDob(user.getDob());
         }

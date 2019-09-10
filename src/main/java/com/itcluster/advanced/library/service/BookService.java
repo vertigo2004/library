@@ -3,14 +3,12 @@ package com.itcluster.advanced.library.service;
 import com.itcluster.advanced.library.model.Author;
 import com.itcluster.advanced.library.model.Book;
 import com.itcluster.advanced.library.model.Genre;
-import com.itcluster.advanced.library.model.Publicity;
 import com.itcluster.advanced.library.repository.AuthorRepository;
 import com.itcluster.advanced.library.repository.BookRepository;
 import com.itcluster.advanced.library.repository.GenreRepository;
 import com.itcluster.advanced.library.repository.PublicityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.HashSet;
 import java.util.List;
