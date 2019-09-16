@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}">>Books</title>
+    <link rel="shortcut icon" type="image/png" href="/images/library-logo.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>
 </head>
 
 <body>
+<div th:replace="base-layout :: header"></div>
+<div class="container">
 <h1 th:text="${title}">Книжки</h1>
     <table border="2" cellpadding="5">
         <thead>
@@ -45,6 +52,6 @@
 <input th:if="${status} != 'all'" type="button" onclick="location.href='/book/list';" value="Список всіх книжок"/>
 <input th:if="${status} == 'all'" type="button" onclick="location.href='/book/available';" value="Список доступних книжок"/>
 <input type="button" onclick="location.href='/book/taken';" value="Список взятих книжок"/>
-
+</div>
 </body>
 </html>
