@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("profile")
-    public String userProfile(Model model) {
+    public String userProfile() {
         return "user-profile";
     }
 

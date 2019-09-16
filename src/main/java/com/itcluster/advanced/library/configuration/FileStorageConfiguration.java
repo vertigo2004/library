@@ -8,7 +8,7 @@ import java.io.File;
 
 @Configuration
 @Slf4j
-public class FileStarageConfiguration {
+public class FileStorageConfiguration {
 
     @Bean(name = "basePath")
     public String basePath() {
