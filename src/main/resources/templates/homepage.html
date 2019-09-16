@@ -14,13 +14,12 @@
 <div class="container hero-unit">
     <h1>Ласкаво просимо до нашої бібліотеки</h1>
 
-    <div id="button">
-        <p>Наразі тут немає що робити. Натисніть кнопку і отримайте випадкову книжку</p>
-        <input type="button" onclick="location.href='/random-book';" value="Випадкова книжка"/>
-        <input type="button" onclick="location.href='/book-list';" value="Список книжок"/>
+    <div sec:authorize="!isAuthenticated()">
+        <p>Зареєструйтеся або увійдіть, що б почати користуватися бібліотекою</p>
     </div>
 
     <div sec:authorize="isAuthenticated()">
+        <p>Вітаємо, читаче!</p>
         This content is only shown to authenticated users.
         <div sec:authentication="name">
             The value of the "name" property of the authentication object should appear here.

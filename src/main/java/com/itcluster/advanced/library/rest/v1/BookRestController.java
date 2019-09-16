@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/book")
 @Slf4j
-public class BookController {
+public class BookRestController {
 
     @Autowired
     BookService bookService;

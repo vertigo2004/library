@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">>Books</title>
+</head>
+
+<body>
+<h1 th:text="${title}">Книжки</h1>
+<table border="2" cellpadding="5">
+    <thead>
+    <th>Authors</th>
+    <th>Title</th>
+    <th>Видано</th>
+    <th>Повернути</th>
+    </thead>
+    <tbody>
+    <tr th:each="record : ${booklogs}">
+        <td>
+            <table>
+                <tr th:each="a : ${record.book.author}">
+                    <td><span th:text="${a.firstname}" />
+                        <span th:text="${a.lastname}" />
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td th:text="${record.book.title}"></td>
+        <td th:text="${record.handout}"></td>
+        <td><a th:href="@{/book/return(recordId=${record.id})}">Повернути</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<input type="button" onclick="location.href='/book/list';" value="Список всіх книжок"/>
+<input type="button" onclick="location.href='/book/available';" value="Список доступних книжок"/>
+
+</body>
+</html>

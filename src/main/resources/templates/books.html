@@ -2,8 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Books</title>
+    <title th:text="${title}">>Books</title>
+</head>
 
+<body>
+<h1 th:text="${title}">Книжки</h1>
     <table border="2" cellpadding="5">
         <thead>
         <th>Authors</th>
@@ -11,6 +14,7 @@
         <th>Publicity</th>
         <th>Published</th>
         <th>Genre</th>
+        <th th:if="${status} != 'all'">Дія</th>
         </thead>
         <tbody>
         <tr th:each="book : ${books}">
@@ -33,11 +37,14 @@
                     </tr>
                 </table>
             </td>
+            <td th:if="${status} == 'available'"><a th:href="@{/book/take(bookId=${book.id})}">Взяти</a></td>
         </tr>
         </tbody>
     </table>
-</head>
-<body>
+
+<input th:if="${status} != 'all'" type="button" onclick="location.href='/book/list';" value="Список всіх книжок"/>
+<input th:if="${status} == 'all'" type="button" onclick="location.href='/book/available';" value="Список доступних книжок"/>
+<input type="button" onclick="location.href='/book/taken';" value="Список взятих книжок"/>
 
 </body>
 </html>
