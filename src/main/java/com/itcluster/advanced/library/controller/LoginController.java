@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-public class LoginController implements WebMvcConfigurer {
+public class LoginController {
 
     private static final String EMAIL_ALREADY_USED_MESSAGE ="There is already a user registered with the email provided";
     private static final String SUCCESSFULLY_REGISTERED_MESSAGE = "User has been registered successfully";
@@ -26,14 +26,14 @@ public class LoginController implements WebMvcConfigurer {
     @Autowired
     private UserService userService;
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login");
-    }
-
     @ModelAttribute("user")
     public User activeUser(Authentication authentication) {
         return new User();
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 
     @GetMapping("/registration")
