@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-@JsonIgnoreProperties(value = { "handler", "hibernateLazyInitializer" })
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Genre {
     @Id
     @GeneratedValue
