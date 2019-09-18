@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Data
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(value = { "handler", "hibernateLazyInitializer" })
 public class Author {
     @Id
     @GeneratedValue

@@ -19,7 +19,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(value = { "handler", "hibernateLazyInitializer" })
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Book {
 
