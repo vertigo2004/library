@@ -29,7 +29,6 @@ public class LoginController implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/registration").setViewName("registration");
     }
 
     @ModelAttribute("user")
@@ -37,20 +36,31 @@ public class LoginController implements WebMvcConfigurer {
         return new User();
     }
 
+    @GetMapping("/registration")
+    public String registration() {
+        return "registration";
+    }
+
     @PostMapping("/registration")
-    public String createNewUser(@Valid User user, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
+    public String createNewUser(@Valid User user,
+                                BindingResult bindingResult,
+                                Model model
+    ) {
+        if (bindingResult.hasErrors() || userExists(user, bindingResult))  {
             return "registration";
         }
-        Optional<User> userExists = userService.findUserByEmail(user.getEmail());
-        if (userExists.isPresent()) {
-            bindingResult.rejectValue("email", "error.user", EMAIL_ALREADY_USED_MESSAGE);
-            return "registration";
-        }
+
         user = userService.createUpdate(user);
         model.addAttribute("successMessage", SUCCESSFULLY_REGISTERED_MESSAGE);
-        model.addAttribute("user", user);
         return "homepage";
+    }
+
+    private boolean userExists(User user, BindingResult bindingResult) {
+        boolean result = userService.findUserByEmail(user.getEmail()).isPresent();
+        if (result) {
+            bindingResult.rejectValue("email", "error.user", EMAIL_ALREADY_USED_MESSAGE);
+        }
+        return result;
     }
 
     @GetMapping("/admin/home")

@@ -29,6 +29,9 @@
     <div sec:authorize="hasAuthority('LIBRARIAN')">
         This content is only shown to librarian.
     </div>
+
+    <div th:if="${user != null}">User name <span th:text="${user.firstname}"></span></div>
+
     <div th:replace="base-layout :: footer"></div>
 </div>
 </body>
