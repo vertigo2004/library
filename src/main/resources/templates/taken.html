@@ -5,34 +5,34 @@
 <body>
 <div th:replace="base-layout :: header"></div>
 <div class="container">
-<h1 th:text="${title}">Книжки</h1>
-<table border="2" cellpadding="5">
-    <thead>
-    <th>Authors</th>
-    <th>Title</th>
-    <th>Видано</th>
-    <th>Повернути</th>
-    </thead>
-    <tbody>
-    <tr th:each="record : ${booklogs}">
-        <td>
-            <table>
-                <tr th:each="a : ${record.book.author}">
-                    <td><span th:text="${a.firstname}" />
-                        <span th:text="${a.lastname}" />
-                    </td>
-                </tr>
-            </table>
-        </td>
-        <td th:text="${record.book.title}"></td>
-        <td th:text="${record.handout}"></td>
-        <td><a th:href="@{/book/return(recordId=${record.id})}">Повернути</a></td>
-    </tr>
-    </tbody>
-</table>
+    <h1 th:text="${title}">Книжки</h1>
+    <div th:if="${booklogs.isEmpty()}">
+        <h2>У Вас немає неповернутих книжок</h2>
+    </div>
+    <div th:if="${!booklogs.isEmpty()}">
+        <table class="table">
 
-<input type="button" onclick="location.href='/book/list';" value="Список всіх книжок"/>
-<input type="button" onclick="location.href='/book/available';" value="Список доступних книжок"/>
+            <thead>
+            <th>Authors</th>
+            <th>Title</th>
+            <th>Видано</th>
+            <th>Повернути</th>
+            </thead>
+            <tbody>
+            <tr th:each="record : ${booklogs}">
+                <td>
+                    <div th:each="a : ${record.book.author}" th:text="${a.firstname} + ' ' + ${a.lastname}"></div>
+                </td>
+                <td th:text="${record.book.title}"></td>
+                <td th:text="${#dates.format(record.handout, 'dd-MM-yyyy')}"></td>
+                <td><a th:href="@{/book/return(recordId=${record.id})}">Повернути</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <input type="button" onclick="location.href='/book/list';" value="Список всіх книжок"/>
+    <input type="button" onclick="location.href='/book/available';" value="Список доступних книжок"/>
 </div>
 </body>
 </html>

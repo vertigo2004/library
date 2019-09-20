@@ -5,45 +5,32 @@
 <body>
 <div th:replace="base-layout :: header"></div>
 <div class="container">
-<h1 th:text="${title}">Книжки</h1>
-    <table border="2" cellpadding="5">
-        <thead>
-        <th>Authors</th>
-        <th>Title</th>
-        <th>Publicity</th>
-        <th>Published</th>
-        <th>Genre</th>
-        <th th:if="${status} != 'all'">Дія</th>
-        </thead>
-        <tbody>
-        <tr th:each="book : ${books}">
-            <td>
-                <table>
-                    <tr th:each="a : ${book.author}">
-                        <td><span th:text="${a.firstname}" />
-                            <span th:text="${a.lastname}" />
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td th:text="${book.title}"></td>
-            <td th:text="${book.publicity.name}"></td>
-            <td th:text="${book.published}"></td>
-            <td>
-                <table>
-                    <tr th:each="g : ${book.genre}">
-                        <td th:text="${g.name}" />
-                    </tr>
-                </table>
-            </td>
-            <td th:if="${status} == 'available'"><a th:href="@{/book/take(bookId=${book.id})}">Взяти</a></td>
-        </tr>
-        </tbody>
-    </table>
+    <h1 th:text="${title}">Книжки</h1>
+        <table class="table">
+            <thead>
+            <th>Authors</th>
+            <th>Title</th>
+            <th>Publicity</th>
+            <th>Published</th>
+            <th>Genre</th>
+            <th th:if="${status} != 'all'">Дія</th>
+            </thead>
+            <tbody>
+            <tr th:each="book : ${books}">
+                <td><div th:each="a : ${book.author}" th:text="${a.firstname} + ' ' + ${a.lastname}"></div></td>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.publicity.name}"></td>
+                <td th:text="${book.published}"></td>
+                <td>
+                    <div th:each="g : ${book.genre}" th:text="${g.name}"></div>
+                </td>
+                <td th:if="${status} == 'available'"><a th:href="@{/book/take(bookId=${book.id})}">Взяти</a></td>
+            </tr>            </tbody>
+        </table>
 
-<input th:if="${status} != 'all'" type="button" onclick="location.href='/book/list';" value="Список всіх книжок"/>
-<input th:if="${status} == 'all'" type="button" onclick="location.href='/book/available';" value="Список доступних книжок"/>
-<input type="button" onclick="location.href='/book/taken';" value="Список взятих книжок"/>
+    <input th:if="${status} != 'all'" type="button" onclick="location.href='/book/list';" value="Список всіх книжок"/>
+    <input th:if="${status} == 'all'" type="button" onclick="location.href='/book/available';" value="Список доступних книжок"/>
+    <input type="button" onclick="location.href='/book/taken';" value="Список взятих книжок"/>
 </div>
 </body>
 </html>

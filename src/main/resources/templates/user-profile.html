@@ -33,7 +33,7 @@
         </tr>
         <tr>
             <td>Birthday</td>
-            <td><div th:text="${user.dob}"></div></td>
+            <td><div th:text="${#dates.format(user.dob, 'dd-MM-yyyy')}"></div></td>
         </tr>
 
         </tr>
