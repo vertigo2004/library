@@ -1,5 +1,6 @@
 package com.itcluster.advanced.library.service;
 
+import com.itcluster.advanced.library.exception.BookNotFoundException;
 import com.itcluster.advanced.library.model.Author;
 import com.itcluster.advanced.library.model.Book;
 import com.itcluster.advanced.library.model.Genre;
@@ -8,6 +9,7 @@ import com.itcluster.advanced.library.repository.BookRepository;
 import com.itcluster.advanced.library.repository.GenreRepository;
 import com.itcluster.advanced.library.repository.LogbookRepository;
 import com.itcluster.advanced.library.repository.PublicityRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
+@Slf4j
 public class BookService {
     @Autowired
     BookRepository bookRepository;
@@ -30,7 +33,11 @@ public class BookService {
     LogbookRepository logbookRepository;
 
     public Book getOne(Long id) {
-        return bookRepository.findById(id).orElse(null);
+        return bookRepository.findById(id).orElseThrow(() -> {
+            BookNotFoundException e = new BookNotFoundException(id);
+            log.error("Book Not Found", e);
+            return e;
+        });
     }
 
     public List<Book> findAll() {
