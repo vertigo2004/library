@@ -13,11 +13,11 @@
 <div th:replace="base-layout :: header"></div>
 <div class="container hero-unit">
     <h1>Profile</h1>
-    <table>
+    <table th:object="${user}">
         <tr>
             <td rowspan="3">
-                <div th:if="${user.photo == null}"><img width="200" src="images/220px-User_icon_2.svg.png"></div>
-                <div th:unless="${user.photo == null}"><img width="200" th:src="'/resources/uploads/' + ${user.photo}"></div>
+                <div th:if="*{photo==null}"><img width="200" src="/resources/images/220px-User_icon_2.svg.png"></div>
+                <div th:unless="*{photo==null}"><img width="200" th:src="'/resources/uploads/' + *{photo}"></div>
                 <form align="center" action="uploadPhoto" method="POST" enctype="multipart/form-data">
                     <input type="file" name="file" id="selectedFile" style="display: none;" onchange="form.submit()"/>
                     <input type="button" value="Загрузити Фото"
@@ -25,15 +25,15 @@
                 </form>
             </td>
             <td>Name</td>
-            <td><div th:text="${user.firstname} + ' ' + ${user.lastname}"></div></td>
+            <td><div th:text="*{firstname} + ' ' + *{lastname}"></div></td>
         </tr>
         <tr>
             <td>Email</td>
-            <td><div th:text="${user.email}"></div></td>
+            <td><div th:text="*{email}"></div></td>
         </tr>
         <tr>
             <td>Birthday</td>
-            <td><div th:text="${#dates.format(user.dob, 'dd-MM-yyyy')}"></div></td>
+            <td><div th:text="*{#dates.format(dob, 'dd-MM-yyyy')}"></div></td>
         </tr>
 
         </tr>
