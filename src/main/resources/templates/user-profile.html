@@ -1,38 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
-<head>
-    <meta charset="UTF-8">
-    <title>My library user profile</title>
-    <link rel="shortcut icon" type="image/png" href="/images/library-logo.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}"/>
-</head>
+
+<head th:replace="base-layout :: head"></head>
+
 <body>
+
 <div th:replace="base-layout :: header"></div>
+
 <div class="container hero-unit">
-    <h1>Profile</h1>
-    <table th:object="${user}">
+    <h1 th:text="#{profile.title}">Profile</h1>
+    <table th:object="${user}" class="table">
         <tr>
-            <td rowspan="3">
+            <td rowspan="3" align="center" width="50%">
                 <div th:if="*{photo==null}"><img width="200" src="/resources/images/220px-User_icon_2.svg.png"></div>
                 <div th:unless="*{photo==null}"><img width="200" th:src="'/resources/uploads/' + *{photo}"></div>
-                <form align="center" action="uploadPhoto" method="POST" enctype="multipart/form-data">
+                <form action="uploadPhoto" method="POST" enctype="multipart/form-data">
                     <input type="file" name="file" id="selectedFile" style="display: none;" onchange="form.submit()"/>
-                    <input type="button" value="Загрузити Фото"
+                    <input type="button" th:value="#{profile.image.upload}" value="Загрузити Фото"
                            onclick="document.getElementById('selectedFile').click();"/>
                 </form>
             </td>
-            <td>Name</td>
+            <td width="20%" th:text="#{profile.uname}">Name</td>
             <td><div th:text="*{firstname} + ' ' + *{lastname}"></div></td>
         </tr>
         <tr>
-            <td>Email</td>
+            <td th:text="#{profile.email}">Email</td>
             <td><div th:text="*{email}"></div></td>
         </tr>
         <tr>
-            <td>Birthday</td>
+            <td th:text="#{profile.birthday}">Birthday</td>
             <td><div th:text="*{#dates.format(dob, 'dd-MM-yyyy')}"></div></td>
         </tr>
 
