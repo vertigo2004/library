@@ -7,32 +7,36 @@
 
 <div th:replace="base-layout :: header"></div>
 <div class="container">
-    <h1 th:text="${title}">Книжки</h1>
-        <table class="table">
-            <thead>
-            <th>Authors</th>
-            <th>Title</th>
-            <th>Publicity</th>
-            <th>Published</th>
-            <th>Genre</th>
-            <th th:if="${status} != 'all'">Дія</th>
-            </thead>
-            <tbody>
-            <tr th:each="book : ${books}">
-                <td><div th:each="a : ${book.author}" th:text="${a.firstname} + ' ' + ${a.lastname}"></div></td>
-                <td th:text="${book.title}"></td>
-                <td th:text="${book.publicity.name}"></td>
-                <td th:text="${book.published}"></td>
-                <td>
-                    <div th:each="g : ${book.genre}" th:text="${g.name}"></div>
-                </td>
-                <td th:if="${status} == 'available'"><a th:href="@{/book/take(bookId=${book.id})}">Взяти</a></td>
-            </tr>            </tbody>
-        </table>
+    <h1 th:text="${#messages.msg('books.' + status)}">Книжки</h1>
+    <table class="table">
+        <thead>
+        <th th:text="#{book.authors}">Authors</th>
+        <th th:text="#{book.title}">Title</th>
+        <th th:text="#{book.publicity}">Publicity</th>
+        <th th:text="#{book.published}">Published</th>
+        <th th:text="#{book.genre}">Genre</th>
+        <th th:if="${status} != 'all'" th:text="#{books.action}">Дія</th>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${books}">
+            <td><div th:each="a : ${book.author}" th:text="${a.firstname} + ' ' + ${a.lastname}"></div></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.publicity.name}"></td>
+            <td th:text="${book.published}"></td>
+            <td><div th:each="g : ${book.genre}" th:text="${g.name}"></div></td>
+            <td th:if="${status} == 'available'">
+                <a th:href="@{/book/take(bookId=${book.id})}" th:text="#{books.take}">Взяти</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-    <input th:if="${status} != 'all'" type="button" onclick="location.href='/book/list';" th:value="#{books.all}" value="Список всіх книжок"/>
-    <input th:if="${status} == 'all'" type="button" onclick="location.href='/book/available';" th:value="#{books.available}" value="Список доступних книжок"/>
-    <input type="button" onclick="location.href='/book/taken';" th:value="#{books.taken}" value="Список взятих книжок"/>
+    <input th:if="${status} != 'all'" type="button" onclick="location.href='/book/list';"
+           th:value="#{books.all}" value="Список всіх книжок"/>
+    <input th:if="${status} == 'all'" type="button" onclick="location.href='/book/available';"
+           th:value="#{books.available}" value="Список доступних книжок"/>
+    <input type="button" onclick="location.href='/book/taken';"
+           th:value="#{books.taken}" value="Список взятих книжок"/>
 </div>
 </body>
 </html>
