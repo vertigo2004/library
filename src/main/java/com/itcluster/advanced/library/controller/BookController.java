@@ -23,6 +23,7 @@ import java.util.Random;
 
 @Controller
 @RequestMapping("/book")
+@Slf4j
 public class BookController {
 
     @Autowired
@@ -42,7 +43,7 @@ public class BookController {
 
     @GetMapping("/random")
     public String randomBook(Model model) {
-
+        log.trace("Generating a random book");
         List<Book> books = bookService.findAll();
         Random r = new Random();
         Book book = books.get(r.nextInt(books.size()));
@@ -52,8 +53,10 @@ public class BookController {
 
     @GetMapping("/{id}")
     public String homePage(@PathVariable Long id, Model model) {
-
+        log.trace("Getting a book by ID: {}", id);
+        log.info("I'm in the Book Controller. Looking for book by it's ID");
         model.addAttribute("book", bookService.getOne(id));
+        log.debug("Book with id: {} is found", id);
         return "onebook";
     }
 
