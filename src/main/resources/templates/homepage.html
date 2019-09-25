@@ -5,18 +5,18 @@
 <body>
 <div th:replace="base-layout :: header"></div>
 <div class="container hero-unit">
-    <h1>Ласкаво просимо до нашої бібліотеки</h1>
+    <h1 th:text="#{home.welcome}">Ласкаво просимо до нашої бібліотеки</h1>
 
     <div sec:authorize="!isAuthenticated()">
-        <p>Зареєструйтеся або увійдіть, що б почати користуватися бібліотекою</p>
+        <p th:text="#{home.begin}">Зареєструйтеся або увійдіть, що б почати користуватися бібліотекою</p>
+    </div>
+    <div sec:authentication="name">
+        The value of the "name" property of the authentication object should appear here.
     </div>
 
     <div sec:authorize="isAuthenticated()">
-        <p>Вітаємо, читаче!</p>
+        <p th:text="#{home.greetings}">Вітаємо, читаче!</p>
         This content is only shown to authenticated users.
-        <div sec:authentication="name">
-            The value of the "name" property of the authentication object should appear here.
-        </div>
         Authenticated user roles:
         <div sec:authentication="principal.authorities"></div>
     </div>
@@ -30,7 +30,7 @@
         This content is only shown to librarian.
     </div>
 
-    <div th:if="${user != null}">User name <span th:text="${user.firstname}"></span></div>
+    <div th:if="${user != null}" th:text="#{home.uname(${user.firstname}, ${user.lastname})}">User name</div>
 
     <div th:replace="base-layout :: footer"></div>
 </div>

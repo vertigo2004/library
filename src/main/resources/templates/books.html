@@ -1,37 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="base-layout :: head">
+<html xmlns:th="http://www.thymeleaf.org">
 
-</head>
+<head th:replace="base-layout :: head"></head>
 
 <body>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#locales").change(function () {
-
-            var selectedOption = $('#locales').val();
-            if (selectedOption != ''){
-                window.location.replace('?lang=' + selectedOption);
-            }
-        });
-    });
-</script>
 
 <div th:replace="base-layout :: header"></div>
 <div class="container">
     <h1 th:text="${title}">Книжки</h1>
         <table class="table">
             <thead>
-            <th th:text="#{book.authors}">Authors</th>
-            <th th:text="#{book.title}">Title</th>
-            <th th:text="#{book.publicity}">Publicity</th>
-            <th th:text="#{book.published}">Published</th>
-            <th th:text="#{book.genre}">Genre</th>
+            <th>Authors</th>
+            <th>Title</th>
+            <th>Publicity</th>
+            <th>Published</th>
+            <th>Genre</th>
             <th th:if="${status} != 'all'">Дія</th>
             </thead>
             <tbody>
-            <tr th:each="book : ${books}" >
+            <tr th:each="book : ${books}">
                 <td><div th:each="a : ${book.author}" th:text="${a.firstname} + ' ' + ${a.lastname}"></div></td>
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.publicity.name}"></td>
@@ -46,12 +33,6 @@
     <input th:if="${status} != 'all'" type="button" onclick="location.href='/book/list';" th:value="#{books.all}" value="Список всіх книжок"/>
     <input th:if="${status} == 'all'" type="button" onclick="location.href='/book/available';" th:value="#{books.available}" value="Список доступних книжок"/>
     <input type="button" onclick="location.href='/book/taken';" th:value="#{books.taken}" value="Список взятих книжок"/>
-    <span th:text="#{lang.change}">Language</span>:
-    <select id="locales">
-        <option value=""></option>
-        <option value="en" th:text="#{lang.eng}"></option>
-        <option value="uk" th:text="#{lang.uk}"></option>
-    </select>
 </div>
 </body>
 </html>
