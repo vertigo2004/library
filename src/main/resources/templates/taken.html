@@ -5,18 +5,18 @@
 <body>
 <div th:replace="base-layout :: header"></div>
 <div class="container">
-    <h1 th:text="${title}">Книжки</h1>
+    <h1 th:text="${#messages.msg('books.' + status)}">Книжки</h1>
     <div th:if="${booklogs.isEmpty()}">
-        <h2>У Вас немає неповернутих книжок</h2>
+        <h2 th:text="#{books.taken.is.empty}">У Вас немає неповернутих книжок</h2>
     </div>
     <div th:if="${!booklogs.isEmpty()}">
         <table class="table">
 
             <thead>
-            <th>Authors</th>
-            <th>Title</th>
-            <th>Видано</th>
-            <th>Повернути</th>
+            <th th:text="#{book.authors}">Authors</th>
+            <th th:text="#{book.title}">Title</th>
+            <th th:text="#{book.handedon}">Видано</th>
+            <th th:text="#{books.action}">Повернути</th>
             </thead>
             <tbody>
             <tr th:each="record : ${booklogs}">
@@ -25,14 +25,15 @@
                 </td>
                 <td th:text="${record.book.title}"></td>
                 <td th:text="${#dates.format(record.handout, 'dd-MM-yyyy')}"></td>
-                <td><a th:href="@{/book/return(recordId=${record.id})}">Повернути</a></td>
+                <td><a th:href="@{/book/return(recordId=${record.id})}" th:text="#{books.return}">Повернути</a></td>
             </tr>
             </tbody>
         </table>
     </div>
 
-    <input type="button" onclick="location.href='/book/list';" value="Список всіх книжок"/>
-    <input type="button" onclick="location.href='/book/available';" value="Список доступних книжок"/>
+    <input type="button" onclick="location.href='/book/list';" th:value="#{books.all}" value="Список всіх книжок"/>
+    <input type="button" onclick="location.href='/book/available';" th:value="#{books.available}" value="Список доступних книжок"/>
+
 </div>
 </body>
 </html>

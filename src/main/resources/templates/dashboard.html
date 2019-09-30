@@ -5,7 +5,7 @@
 <body>
 <div th:replace="base-layout :: header"></div>
 <div class="container hero-unit">
-    <h1>Dashboard</h1>
+    <h1 th:text="#{dashboard.title}">Dashboard</h1>
     <div th:text="${#authentication.name}">
         The value of the "name" property of the authentication object should appear here.
     </div>
@@ -14,10 +14,10 @@
     <a th:href="@{/user/profile}">Profile</a>
 
 <div sec:authorize="hasAuthority('USER')">
-    <input type="button" onclick="location.href='/book/random';" value="Випадкова книжка"/>
-    <input type="button" onclick="location.href='/book/list';" value="Список всіх книжок"/>
-    <input type="button" onclick="location.href='/book/available';" value="Список доступних книжок"/>
-    <input type="button" onclick="location.href='/book/taken';" value="Список взятих книжок"/>
+    <input type="button" onclick="location.href='/book/random';" th:value="#{book.random}" value="Випадкова книжка"/>
+    <input type="button" onclick="location.href='/book/list';" th:value="#{books.all}" value="Список всіх книжок"/>
+    <input type="button" onclick="location.href='/book/available';" th:value="#{books.available}" value="Список доступних книжок"/>
+    <input type="button" onclick="location.href='/book/taken';" th:value="#{books.taken}" value="Список взятих книжок"/>
 </div>
 </div>
 </body>
